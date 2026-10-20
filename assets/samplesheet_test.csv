@@ -1,0 +1,3 @@
+sample,fastq,organism,genome_size
+GMCF_3819_B1_ExtractionBlank1,/gpfs/accounts/esnitkin_root/esnitkin1/dhatrib/pacbio_data/GMCF3819/demux_fastq/GMCF_3819_B1_ExtractionBlank1.fastq.gz,NA,5000000
+GMCF_3819_B2_ExtractionBlank2,/gpfs/accounts/esnitkin_root/esnitkin1/dhatrib/pacbio_data/GMCF3819/demux_fastq/GMCF_3819_B2_ExtractionBlank2.fastq.gz,NA,5000000

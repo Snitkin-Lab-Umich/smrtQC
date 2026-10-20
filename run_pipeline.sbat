@@ -1,0 +1,28 @@
+#!/bin/bash
+#SBATCH --job-name=pacbio_hifi_wgs
+#SBATCH --mail-type=BEGIN,END,FAIL
+#SBATCH --mail-user=dhatrib@umich.edu
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=5gb
+#SBATCH --time=08:00:00
+#SBATCH --account=esnitkin2
+#SBATCH --partition=standard
+#SBATCH --output=slurm_out/slurm-%j.out
+
+# This job is only the Nextflow "head" driver; it submits each process as its
+# own SLURM job via the slurm executor 
+
+mkdir -p slurm_out
+module load Bioinformatics nextflow singularity
+
+export NXF_SINGULARITY_CACHEDIR=/scratch/esnitkin_root/esnitkin1/dhatrib/smrtQC/singularity_cache
+
+nextflow run main.nf \
+    -profile slurm,singularity \
+    --input assets/samplesheet.csv \
+    --outdir results/$(date +%Y-%m-%d)_GMCF3819_pacbio_hifi \
+    -w /scratch/esnitkin_root/esnitkin1/dhatrib/smrtQC/work \
+    --account esnitkin2 \
+    -resume
